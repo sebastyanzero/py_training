@@ -1,1 +1,1 @@
-# ggwp 11 py_training
+# ggwpрр 11 py_training
