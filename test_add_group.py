@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
-""" просто комментарий 4 """
+""" просто комментарий 5 """
 class TestAddGroup(unittest.TestCase):
     def setUp(self):
         self.wd = webdriver.Chrome(executable_path=r'')
