@@ -6,10 +6,13 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
+
 """ просто комментарий 5 """
-class TestAddGroup(unittest.TestCase):
+class test_add_group(unittest.TestCase):
     def setUp(self):
-        self.wd = webdriver.Chrome(executable_path=r'')
+        self.wd = webdriver.Firefox()
+        ### self.wd = webdriver.Chrome()
+        ### self.wd = webdriver.Chrome(executable_path=r'')
         self.wd.implicitly_wait(30)
 
     def test_untitled_test_case(self):
