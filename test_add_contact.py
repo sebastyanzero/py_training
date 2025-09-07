@@ -21,7 +21,8 @@ class test_add_contact(unittest.TestCase):
         self.logout(wd)
 
     def create_contact(self, wd, fname="q1", mname="r2", lname="r3", nname="r4", title="r5", company="r6", address="r7",
-                       home="t5", mobile="t6", work="t7", fax="t8", email1="u1", email2="u2", email3="u3", sitehpage="u4"):
+                       home="t5", mobile="t6", work="t7", fax="t8", email1="u1", email2="u2", email3="u3", sitehpage="u4",
+                       bday="1", bmonth="January", byear="2000"):
         # press add new contact
         wd.find_element_by_link_text("add new").click()
         # input  firstname
@@ -87,16 +88,19 @@ class test_add_contact(unittest.TestCase):
         # input  bd date
         ## input bday
         wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text("1")
-        wd.find_element_by_xpath("//option[@value='1']").click()
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(bday)
+        #  wd.find_element_by_xpath("//option[@value='1']").click()
+        # wd.find_element_by_xpath('//option[@value='+bday+']').click()
+        wd.find_element_by_xpath("//option[@value='" + bday + "']").click()
         ## input bmonth
         wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text("January")
-        wd.find_element_by_xpath("//option[@value='January']").click()
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(bmonth)
+        #wd.find_element_by_xpath("//option[@value='January']").click() #rabotaet iznachalnaya
+        wd.find_element_by_xpath("//option[@value='" + bmonth + "']").click()
         ## input byear
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys("2000")
+        wd.find_element_by_name("byear").send_keys(byear)
         # input  ad date
         ## input aday
         wd.find_element_by_name("aday").click()
