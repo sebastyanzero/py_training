@@ -15,14 +15,25 @@ class test_add_contact(unittest.TestCase):
     def test_add_contact(self):
         wd = self.wd
         self.open_home_page(wd)
-        self.login(wd)
-        self.create_contact(wd)
+        self.login(wd, username="admin", password="secret")
+        self.create_contact(wd, fname="fq1", mname="r2", lname="r3", nname="r4", title="r5", company="r6", address="r7",
+                            home="t5", mobile="t6", work="t7", fax="t8", email1="u1", email2="u2", email3="u3",
+                            sitehpage="u4", bday="1", bmonth="January", byear="2000", aday="7", amonth="May", ayear="2030")
         self.return_to_home_page(wd)
         self.logout(wd)
 
-    def create_contact(self, wd, fname="q1", mname="r2", lname="r3", nname="r4", title="r5", company="r6", address="r7",
-                       home="t5", mobile="t6", work="t7", fax="t8", email1="u1", email2="u2", email3="u3", sitehpage="u4",
-                       bday="1", bmonth="January", byear="2000", aday="1", amonth="January", ayear="2030"):
+    def test_add_empty_contact(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, username="admin", password="secret")
+        self.create_contact(wd, fname="", mname="", lname="", nname="", title="", company="", address="",
+                            home="", mobile="", work="", fax="", email1="", email2="", email3="",
+                            sitehpage="", bday="", bmonth="", byear="", aday="", amonth="", ayear="")
+        self.return_to_home_page(wd)
+        self.logout(wd)
+
+    def create_contact(self, wd, fname, mname, lname, nname, title, company, address, home, mobile, work, fax, email1,
+                       email2, email3, sitehpage, bday, bmonth, byear, aday, amonth, ayear):
         # press add new contact
         wd.find_element_by_link_text("add new").click()
         # input  firstname
@@ -87,38 +98,48 @@ class test_add_contact(unittest.TestCase):
         wd.find_element_by_name("homepage").send_keys(sitehpage)
         # input  bd date
         ## input bday
-        wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text(bday)
-        #  wd.find_element_by_xpath("//option[@value='1']").click()
-        # wd.find_element_by_xpath('//option[@value='+bday+']').click()
-        wd.find_element_by_xpath("//option[@value='" + bday + "']").click()
+        if bday !="":
+            wd.find_element_by_name("bday").click()
+            Select(wd.find_element_by_name("bday")).select_by_visible_text(bday)
+            #  wd.find_element_by_xpath("//option[@value='1']").click()
+            # wd.find_element_by_xpath('//option[@value='+bday+']').click()
+            #wd.find_element_by_xpath("//option[@value='" + bday + "']").click()
+            wd.find_element_by_xpath("//select[@name='bday']//option[@value='" + bday + "']").click()
         ## input bmonth
-        wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(bmonth)
-        #wd.find_element_by_xpath("//option[@value='January']").click() #rabotaet iznachalnaya stroka
-        wd.find_element_by_xpath("//option[@value='" + bmonth + "']").click()
+        if bmonth !="":
+            wd.find_element_by_name("bmonth").click()
+            Select(wd.find_element_by_name("bmonth")).select_by_visible_text(bmonth)
+            #wd.find_element_by_xpath("//option[@value='January']").click() #rabotaet iznachalnaya stroka
+            #wd.find_element_by_xpath("//option[@value='" + bmonth + "']").click()
+            wd.find_element_by_xpath("//select[@name='bmonth']//option[@value='" + bmonth + "']").click()
         ## input byear
-        wd.find_element_by_name("byear").click()
-        wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(byear)
+        if byear !="":
+            wd.find_element_by_name("byear").click()
+            wd.find_element_by_name("byear").clear()
+            wd.find_element_by_name("byear").send_keys(byear)
         # input  ad date
         ## input aday
-        wd.find_element_by_name("aday").click()
-        # Select(wd.find_element_by_name("aday")).select_by_visible_text("1")
-        Select(wd.find_element_by_name("aday")).select_by_visible_text(aday)
-        #wd.find_element_by_xpath("//div[@id='content']/form/select[3]/option[3]").click() # iznachalnaya stroka
-        # wd.find_element_by_css_selector("select[name=\"aday\"] &gt; option[value=\"1\"]").click()
-        # wd.find_element_by_css_selector('select[name="aday"] &gt; option[value="'+aday+'"]').click()
-        wd.find_element_by_xpath("//option[@value='" + aday + "']").click()
+        if aday != "":
+            wd.find_element_by_name("aday").click()
+            # Select(wd.find_element_by_name("aday")).select_by_visible_text("1")
+            Select(wd.find_element_by_name("aday")).select_by_visible_text(aday)
+            #wd.find_element_by_xpath("//div[@id='content']/form/select[3]/option[3]").click() # iznachalnaya stroka
+            #wd.find_element_by_css_selector("select[name=\"aday\"] &gt; option[value=\"1\"]").click()
+            #wd.find_element_by_css_selector('select[name="aday"] &gt; option[value="'+aday+'"]').click()
+            #wd.find_element_by_xpath("//option[@value='" + aday + "']").click()
+            wd.find_element_by_xpath("//select[@name='aday']//option[@value='" + aday + "']").click()
         ## input amonth
-        wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text(amonth)
-        # wd.find_element_by_xpath("//div[@id='content']/form/select[4]/option[2]").click() # iznachalnaya stroka
-        wd.find_element_by_xpath("//option[@value='" + amonth + "']").click()
+        if amonth != "":
+            wd.find_element_by_name("amonth").click()
+            Select(wd.find_element_by_name("amonth")).select_by_visible_text(amonth)
+            #wd.find_element_by_xpath("//div[@id='content']/form/select[4]/option[2]").click() # iznachalnaya stroka
+            #wd.find_element_by_xpath("//option[@value='" + amonth + "']").click()
+            wd.find_element_by_xpath("//select[@name='amonth']//option[@value='" + amonth + "']").click()
         ## input ayear
-        wd.find_element_by_name("ayear").click()
-        wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys(ayear)
+        if ayear != "":
+            wd.find_element_by_name("ayear").click()
+            wd.find_element_by_name("ayear").clear()
+            wd.find_element_by_name("ayear").send_keys(ayear)
         # press button Enter
         wd.find_element_by_xpath("//div[@id='content']/form/input[20]").click()
 
@@ -128,13 +149,13 @@ class test_add_contact(unittest.TestCase):
     def return_to_home_page(self, wd):
         wd.find_element_by_link_text("home page").click()
 
-    def login(self, wd):
+    def login(self, wd, username, password):
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
+        wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
+        wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
     def open_home_page(self, wd):
