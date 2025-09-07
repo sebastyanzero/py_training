@@ -20,69 +20,70 @@ class test_add_contact(unittest.TestCase):
         self.return_to_home_page(wd)
         self.logout(wd)
 
-    def create_contact(self, wd):
+    def create_contact(self, wd, fname="q1", mname="r2", lname="r3", nname="r4", title="r5", company="r6", address="r7",
+                       home="t5", mobile="t6", work="t7", fax="t8", email1="u1", email2="u2", email3="u3", sitehpage="u4"):
         # press add new contact
         wd.find_element_by_link_text("add new").click()
         # input  firstname
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys("q1")
+        wd.find_element_by_name("firstname").send_keys(fname)
         # input  middlename
         wd.find_element_by_name("middlename").click()
         wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys("r2")
+        wd.find_element_by_name("middlename").send_keys(mname)
         # input  lastname
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys("r3")
+        wd.find_element_by_name("lastname").send_keys(lname)
         # input  nickname
         wd.find_element_by_name("nickname").click()
         wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys("r4")
+        wd.find_element_by_name("nickname").send_keys(nname)
         # input
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
-        wd.find_element_by_name("title").send_keys("r5")
+        wd.find_element_by_name("title").send_keys(title)
         # input
         wd.find_element_by_name("company").click()
         wd.find_element_by_name("company").clear()
-        wd.find_element_by_name("company").send_keys("r6")
+        wd.find_element_by_name("company").send_keys(company)
         # input
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys("r7")
+        wd.find_element_by_name("address").send_keys(address)
         # input
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys("t5")
+        wd.find_element_by_name("home").send_keys(home)
         # input
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys("t6")
+        wd.find_element_by_name("mobile").send_keys(mobile)
         # input
         wd.find_element_by_name("work").click()
         wd.find_element_by_name("work").clear()
-        wd.find_element_by_name("work").send_keys("t7")
+        wd.find_element_by_name("work").send_keys(work)
         # input
         wd.find_element_by_name("fax").click()
         wd.find_element_by_name("fax").clear()
-        wd.find_element_by_name("fax").send_keys("t8")
+        wd.find_element_by_name("fax").send_keys(fax)
         # input
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys("u1")
+        wd.find_element_by_name("email").send_keys(email1)
         # input
         wd.find_element_by_name("email2").click()
         wd.find_element_by_name("email2").clear()
-        wd.find_element_by_name("email2").send_keys("u2") \
+        wd.find_element_by_name("email2").send_keys(email2) 
             # input
         wd.find_element_by_name("email3").click()
         wd.find_element_by_name("email3").clear()
-        wd.find_element_by_name("email3").send_keys("u3")
+        wd.find_element_by_name("email3").send_keys(email3)
         # input
         wd.find_element_by_name("homepage").click()
         wd.find_element_by_name("homepage").clear()
-        wd.find_element_by_name("homepage").send_keys("u4")
+        wd.find_element_by_name("homepage").send_keys(sitehpage)
         # input  bd date
         ## input bday
         wd.find_element_by_name("bday").click()
