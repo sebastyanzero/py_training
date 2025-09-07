@@ -22,7 +22,7 @@ class test_add_contact(unittest.TestCase):
 
     def create_contact(self, wd, fname="q1", mname="r2", lname="r3", nname="r4", title="r5", company="r6", address="r7",
                        home="t5", mobile="t6", work="t7", fax="t8", email1="u1", email2="u2", email3="u3", sitehpage="u4",
-                       bday="1", bmonth="January", byear="2000"):
+                       bday="1", bmonth="January", byear="2000", aday="1", amonth="January", ayear="2030"):
         # press add new contact
         wd.find_element_by_link_text("add new").click()
         # input  firstname
@@ -95,7 +95,7 @@ class test_add_contact(unittest.TestCase):
         ## input bmonth
         wd.find_element_by_name("bmonth").click()
         Select(wd.find_element_by_name("bmonth")).select_by_visible_text(bmonth)
-        #wd.find_element_by_xpath("//option[@value='January']").click() #rabotaet iznachalnaya
+        #wd.find_element_by_xpath("//option[@value='January']").click() #rabotaet iznachalnaya stroka
         wd.find_element_by_xpath("//option[@value='" + bmonth + "']").click()
         ## input byear
         wd.find_element_by_name("byear").click()
@@ -104,16 +104,22 @@ class test_add_contact(unittest.TestCase):
         # input  ad date
         ## input aday
         wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text("1")
-        wd.find_element_by_xpath("//div[@id='content']/form/select[3]/option[3]").click()
+        # Select(wd.find_element_by_name("aday")).select_by_visible_text("1")
+        Select(wd.find_element_by_name("aday")).select_by_visible_text(aday)
+        #wd.find_element_by_xpath("//div[@id='content']/form/select[3]/option[3]").click() # iznachalnaya stroka
+        # wd.find_element_by_css_selector("select[name=\"aday\"] &gt; option[value=\"1\"]").click()
+        # wd.find_element_by_css_selector('select[name="aday"] &gt; option[value="'+aday+'"]').click()
+        wd.find_element_by_xpath("//option[@value='" + aday + "']").click()
         ## input amonth
         wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text("January")
-        wd.find_element_by_xpath("//div[@id='content']/form/select[4]/option[2]").click()
+        Select(wd.find_element_by_name("amonth")).select_by_visible_text(amonth)
+        # wd.find_element_by_xpath("//div[@id='content']/form/select[4]/option[2]").click() # iznachalnaya stroka
+        wd.find_element_by_xpath("//option[@value='" + amonth + "']").click()
         ## input ayear
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys("2030")
+        wd.find_element_by_name("ayear").send_keys(ayear)
+        # press button Enter
         wd.find_element_by_xpath("//div[@id='content']/form/input[20]").click()
 
     def logout(self, wd):
