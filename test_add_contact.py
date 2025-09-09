@@ -15,22 +15,18 @@ class test_add_contact(unittest.TestCase):
     
     def test_add_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.create_contact(wd, Contacts(fname="fq1", mname="r2", lname="r3", nname="r4", title="r5", company="r6", address="r7",
                             home="t5", mobile="t6", work="t7", fax="t8", email1="u1", email2="u2", email3="u3",
                             sitehpage="u4", bday="1", bmonth="January", byear="2000", aday="7", amonth="May", ayear="2030"))
-        self.return_to_home_page(wd)
         self.logout(wd)
 
     def test_add_empty_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.create_contact(wd, Contacts(fname="", mname="", lname="", nname="", title="", company="", address="",
                             home="", mobile="", work="", fax="", email1="", email2="", email3="",
                             sitehpage="", bday="", bmonth="", byear="", aday="", amonth="", ayear=""))
-        self.return_to_home_page(wd)
         self.logout(wd)
 
     def create_contact(self, wd, contacts):
@@ -113,10 +109,10 @@ class test_add_contact(unittest.TestCase):
             #wd.find_element_by_xpath("//option[@value='" + bmonth + "']").click()
             wd.find_element_by_xpath("//select[@name='bmonth']//option[@value='" + contacts.bmonth + "']").click()
         ## input byear
-        if contacts.byear !="":
-            wd.find_element_by_name("byear").click()
-            wd.find_element_by_name("byear").clear()
-            wd.find_element_by_name("byear").send_keys(contacts.byear)
+        #if contacts.byear !="":
+        wd.find_element_by_name("byear").click()
+        wd.find_element_by_name("byear").clear()
+        wd.find_element_by_name("byear").send_keys(contacts.byear)
         # input  ad date
         ## input aday
         if contacts.aday != "":
@@ -136,12 +132,13 @@ class test_add_contact(unittest.TestCase):
             #wd.find_element_by_xpath("//option[@value='" + amonth + "']").click()
             wd.find_element_by_xpath("//select[@name='amonth']//option[@value='" + contacts.amonth + "']").click()
         ## input ayear
-        if contacts.ayear != "":
-            wd.find_element_by_name("ayear").click()
-            wd.find_element_by_name("ayear").clear()
-            wd.find_element_by_name("ayear").send_keys(contacts.ayear)
+        #if contacts.ayear != "":
+        wd.find_element_by_name("ayear").click()
+        wd.find_element_by_name("ayear").clear()
+        wd.find_element_by_name("ayear").send_keys(contacts.ayear)
         # press button Enter
         wd.find_element_by_xpath("//div[@id='content']/form/input[20]").click()
+        self.return_to_home_page(wd)
 
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
@@ -150,6 +147,7 @@ class test_add_contact(unittest.TestCase):
         wd.find_element_by_link_text("home page").click()
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
