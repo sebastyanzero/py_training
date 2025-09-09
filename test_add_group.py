@@ -2,8 +2,8 @@
 from group import Group
 from application import Application
 import pytest
-#@pytest.fixture(scope="session")
-""" комментарий """
+
+""" комментарий """ #@pytest.fixture(scope="session")
 @pytest.fixture
 def app(request):
     fixture=Application()
