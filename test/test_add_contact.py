@@ -2,7 +2,6 @@
 from model.contacts import Contacts
 
 
-
 def test_add_contact(app):
     app.session.login(username="admin", password="secret")
     app.contacts.create(Contacts(fname="fq1", mname="r2", lname="r3", nname="r4", title="r5", company="r6", address="r7",

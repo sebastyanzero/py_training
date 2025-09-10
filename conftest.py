@@ -2,7 +2,8 @@
 from fixture.application import Application
 import pytest
 
-@pytest.fixture
+# scope="session" - означает, что фикстура запускается на всю сессию
+@pytest.fixture(scope="session")
 def app(request):
     fixture=Application()
     request.addfinalizer(fixture.destroy)
